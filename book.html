@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Book Page
+{% endblock %}
+
+{% block main %}
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <div class="section2">
+          <h2><i class="title2">{{ book["title"] }}</i></h2>
+          <h3>by {{ book["author"] }}</h3>
+          <hr>
+          <h5>Year: {{ book["year"] }}</h5>
+          <h6>ISBN: {{ book["isbn"] }}</h6>
+          Average rating of <b class="emphasize">{{ goodreads["average_rating"] }}</b> from <b class="emphasize">{{ goodreads["work_ratings_count"] }}</b> ratings from Goodreads
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="section2">
+            <h3>Reviews</h3>
+              <p>Here are reviews made for this book:</p>
+              <ul type="none">
+                {% for review in reviews %}
+                <li class="review">
+                  <b>{{ review["username"] }}</b><br>"{{ review["review"] }}"<br>Rating: <b class="emphasize">{{ review["rating"] }}</b>
+                </li>
+                {% endfor %}
+              </ul>
+          </div>
+          {% if reviewed %}
+          <div class="section2">
+            <h4>Write a review for {{ book["title"] }}</h4>
+              <form action="{{ url_for('review', book_id=book.id) }}" method="post">
+                <input type="radio" name="rating" value="1"> 1
+                <input type="radio" name="rating" value="2"> 2
+                <input type="radio" name="rating" value="3"> 3
+                <input type="radio" name="rating" value="4"> 4
+                <input type="radio" name="rating" value="5"> 5
+
+                <textarea rows="10" cols="60" name="review" placeholder="..." name="review"></textarea>
+                <div class="section2">
+                  <button class="btn btn-primary" type="submit">Review</button>
+                </div>
+              </form>
+            </div>
+          {% endif %}
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

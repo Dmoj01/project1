@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Register
+{% endblock %}
+
+{% block main %}
+
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <form action="{{ url_for('register') }}" method="post">
+          <div class="form-group">
+            <input autofocus class="form-control" type="text" placeholder="Username" name="username">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="password" placeholder="Password" name="password">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="password" placeholder="Confirm Password" name="cpassword">
+          </div>
+          <div class="section">
+            <button class="btn btn-primary" type="submit">Register</button>
+          </div>
+        </form>
+
+        <div class="section">
+          Already have an account? <b><a href="/login">Log in</a></b> now!
+        </div>
+      </div>
+
+      <div class="col-sm">
+        <div class="nomobile">
+          <h3>Welcome to <i><b>Book Reviews</b></i></h3>
+          <p>In order to use <i><b>Book Reviews</b></i>, you must first create an account!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

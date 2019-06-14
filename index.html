@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Home
+{% endblock %}
+
+{% block main %}
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        {% if search %}
+          <div class="section2">
+            <span class="isbn">{{ search }}</span>
+          </div>
+        {% endif %}
+        <ul type="none">
+          {% for book in li %}
+          <li><a href="{{ url_for('bookpage', book_id=book.id) }}">
+            <span class="title"><i>{{ book.title }}</i></span><br><span class="author">by {{ book.author }}</span><br><span class="isbn">{{ book.isbn }}</span></a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-sm">
+        <div class="nomobile">
+          <h3>Welcome to <i><b>Book Reviews</b></i></h3>
+          <p>In order to see <i><b>books</b></i> and <i><b>review</b></i> them, you can use the search bar to search for a book's ISBN number, title or author.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
